@@ -15,7 +15,7 @@ exports.contactUsController = async (req, res) => {
       thank you for choosing S.S tutorials`
     )
     const mailSendToOwner = await mailSender(
-      "shiwangsharma04@gmail.com","issue in S.S tutorials",
+      "rishita2004sharma@gmail.com","issue in Sharma stores",
       `user is facing a issue in your app , the user details and the issue faced are as follows:
       ${firstname} ${lastname}
       ${countrycode}  - ${phoneNo}

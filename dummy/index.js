@@ -4,6 +4,7 @@ const app = express();
 
 
 const userRoutes = require("../dummy/routes/User");
+const contactRoutes = require("../dummy/routes/Contact");
 
 
 const database = require("../dummy/config/database");
@@ -30,6 +31,7 @@ app.use(
 
 
 app.use("/api/v1/auth",userRoutes);
+app.use("/api/v1",contactRoutes);
 
 
 app.get("/",(req,res)=>{

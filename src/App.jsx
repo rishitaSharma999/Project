@@ -10,7 +10,8 @@ import VerifyEmail from './pages/VerifyEmail';
 import MyNavbar from './components/Navbar';
 import { Routes, Route } from "react-router-dom";
 import ErrorBoundary from './ErrorBoundary';
-
+import ForgotPassword from './pages/ForgotPassword';
+import UpdatePassword from './pages/UpdatePassword';
 
 function App() {
   {/*This is the top-level component that wraps all the routes. It's used to define the routing configuration for the application. */}
@@ -31,6 +32,8 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
+          <Route path="forgot-password"element={<ForgotPassword />}/> 
+          <Route path="update-password/:id" element={<UpdatePassword />}/>  
         </Routes>
       
       </div>

@@ -41,6 +41,7 @@ export default function MyNavbar() {
             </NavLink>
             <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">Signup</NavLink>
+            <NavLink to="/contact">Contact Us</NavLink>
             <NavLink to="/cart" className="text-white px-2">
               <FaShoppingCart className="text-2xl " />
               {cart.length > 0 && (  
