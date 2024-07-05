@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
 import Product from "../components/Product";
 import { useLocation,useNavigate } from "react-router-dom";
-
+import Carousel from 'react-bootstrap/Carousel';
+import Image1 from "../assets/img/pexels-kish-1488463.jpg"
+import Image2 from "../assets/img/pexels-kseniachernaya-3965545.jpg"
+import Image3 from "../assets/img/White Clean Jewelry Landscape Banner.png"
+import Image4 from "../assets/img/Home.png"
 
 {
   /* a hook that allows you to run some side-effects (e.g., making API calls, setting timers) after rendering a component. */
@@ -83,14 +87,43 @@ const Home = () => {
         
       ) : products.length > 0 ? (
         
-        <div className="product-grid">
-          {products.map((product) => {
-            // print each product object to the console
-            return (<div key={product.id} className="product-item">
+        <div className="product-grid-container p-5">
+      <Carousel>
+        <Carousel.Item>
+          <img src={Image1} alt="Image 1" width="100%" height="auto" style={{ maxHeight: '400px' }} />
+          <Carousel.Caption>
+            
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src={Image2} alt="Image 2" width="100%" height="auto" style={{ maxHeight: '400px' }} />
+          <Carousel.Caption>
+           
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src={Image3} alt="Image 2" width="100%" height="auto" style={{ maxHeight: '400px' }}/>
+          <Carousel.Caption>
+            
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src={Image4} alt="Image 2" width="100%" height="auto" style={{ maxHeight: '400px' }}/>
+          <Carousel.Caption>
+            
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+      <div className="product-grid">
+        {products.map((product) => {
+          return (
+            <div key={product.id} className="product-item">
               <Product product={product} />
-            </div>)
-          })}
-        </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
       ) : (
         <div>No Products Found</div>
       )}

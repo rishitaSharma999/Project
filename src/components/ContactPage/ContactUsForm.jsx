@@ -1,35 +1,38 @@
-import React, { useEffect, useState } from "react"
-import { useForm } from "react-hook-form"
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, Link } from "react-router-dom";
+import { Button, Form, Container, Row, Col } from "react-bootstrap/";
+import InputGroup from "react-bootstrap/InputGroup";
 
-import CountryCode from "../../data/countrycode.json"
-import { apiConnector } from "../../services/apiconnector"
-import { contactusEndpoint } from "../../services/apis"
+import CountryCode from "../../data/countrycode.json";
+import { apiConnector } from "../../services/apiconnector";
+import { contactusEndpoint } from "../../services/apis";
 
 const ContactUsForm = () => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitSuccessful },
-  } = useForm()
+  } = useForm();
 
   const submitContactForm = async (data) => {
-    console.log("Form Data - ", data)
+    console.log("Form Data - ", data);
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await apiConnector(
         "POST",
         contactusEndpoint.CONTACT_US_API,
         data
-      )
-      console.log("Email Res - ", res)
-      setLoading(false)
+      );
+      console.log("Email Res - ", res);
+      setLoading(false);
     } catch (error) {
-      console.log("ERROR MESSAGE - ", error.message)
-      setLoading(false)
+      console.log("ERROR MESSAGE - ", error.message);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -39,145 +42,165 @@ const ContactUsForm = () => {
         lastname: "",
         message: "",
         phoneNo: "",
-      })
+      });
     }
-  }, [reset, isSubmitSuccessful])
+  }, [reset, isSubmitSuccessful]);
 
   return (
-    <form
-      className="flex flex-col gap-7 mb-10 "
-      onSubmit={handleSubmit(submitContactForm)}
-    >
-      <div className="flex gap-5 flex-row">
-        <div className="flex flex-col gap-2 w-[48%]">
-          <label htmlFor="firstname" className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300 ">
-            First Name
-          </label>
-          <input
-            type="text"
-            name="firstname"
-            id="firstname"
-            placeholder="Enter first name"
-            className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-            {...register("firstname", { required: true })}
-          />
-          {errors.firstname && (
-            <span className="-mt-1 text-[12px] text-yellow-100">
-              Please enter your name.
-            </span>
-          )}
-        </div>
-        <div className="flex flex-col gap-2 w-[48%]">
-          <label htmlFor="lastname" className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300">
-            Last Name
-          </label>
-          <input
-            type="text"
-            name="lastname"
-            id="lastname"
-            placeholder="Enter last name"
-            className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-            {...register("lastname")}
-          />
-        </div>
-      </div>
+    <>
+      <Container>
+        <Row className="justify-content-center align-items-center h-100 mt-3">
+          <Col xl={6}>
+            <div className="signup">
+              <h1
+                style={{
+                  fontSize: "36px",
+                  fontWeight: "bold",
+                  color: "rgb(28 46 52)",
+                  textShadow: "2px 2px 4px #ccccff",
+                }}
+              >
+                Contact
+              </h1>
+              <Form onSubmit={handleSubmit(submitContactForm)}>
+                <Form.Group className="mb-1" controlId="formBasicFirstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="firstname"
+                    id="firstname"
+                    placeholder="Enter first name"
+                    className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
+                    {...register("firstname", { required: true })}
+                  />
+                  {errors.firstname && (
+                    <span className="-mt-1 text-[12px] text-yellow-100">
+                      Please enter your name.
+                    </span>
+                  )}
+                </Form.Group>
+                <Form.Group className="mb-1" controlId="formBasicLastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="lastname"
+                    id="lastname"
+                    placeholder="Enter last name"
+                    className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
+                    {...register("lastname")}
+                  />
+                </Form.Group>
+                <Form.Group className="mb-1" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Enter email address"
+                    className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
+                    {...register("email", { required: true })}
+                  />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter email address"
-          className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-          {...register("email", { required: true })}
-        />
-        {errors.email && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
-            Please enter your Email address.
-          </span>
-        )}
-      </div>
+                  {errors.email && (
+                    <span className="-mt-1 text-[12px] text-yellow-100">
+                      Please enter your Email address.
+                    </span>
+                  )}
+                </Form.Group>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="phonenumber" className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300">
-          Phone Number
-        </label>
+                <Form.Group className="mb-2" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
+                  />
+                </Form.Group>
 
-        <div className="flex gap-5">
-          <div className="flex w-[81px] flex-col gap-2">
-            <select
-              type="text"
-              name="dropdown"
-              id="dropdown"
-              placeholder="Enter first name"
-              className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-              {...register("countrycode", { required: true })}
-            >
-              {CountryCode.map((ele, i) => {
-                return (
-                  <option key={i} value={ele.code} className=" bg-blue-700 text-emerald-200">
-                    {ele.code} -{ele.country}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
-          <div className="flex w-[calc(100%-90px)] flex-col gap-2">
-            <input
-              type="number"
-              name="phonenumber"
-              id="phonenumber"
-              placeholder="12345 67890"
-              className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-              {...register("phoneNo", {
-                required: {
-                  value: true,
-                  message: "Please enter your Phone Number.",
-                },
-                maxLength: { value: 12, message: "Invalid Phone Number" },
-                minLength: { value: 10, message: "Invalid Phone Number" },
-              })}
-            />
-          </div>
-        </div>
-        {errors.phoneNo && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
-            {errors.phoneNo.message}
-          </span>
-        )}
-      </div>
+                <Form.Group className="mb-3" controlId="formBasicPhone">
+                  <Form.Label label="Phone Number">Phone Number</Form.Label>
+                  <Form.Control
+                    as="select"
+                    {...register("countrycode", { required: true })}
+                    className="form-select w-full rounded-[0.5rem] bg-blue-700 p-[12px] text-emerald-200"
+                  >
+                    {CountryCode.map((ele, i) => {
+                      return (
+                        <option
+                          key={i}
+                          value={ele.code}
+                          className="bg-blue-700 text-emerald-200"
+                        >
+                          {ele.code} - {ele.country}
+                        </option>
+                      );
+                    })}
+                  </Form.Control>
+                  <Form.Control
+                    type="tel"
+                    name="phonenumber"
+                    id="phonenumber"
+                    placeholder="12345 67890"
+                    className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
+                    {...register("phoneNo", {
+                      required: {
+                        value: true,
+                        message: "Please enter your Phone Number.",
+                      },
+                      maxLength: { value: 12, message: "Invalid Phone Number" },
+                      minLength: { value: 10, message: "Invalid Phone Number" },
+                    })}
+                  />
+                  {errors.phoneNo && (
+                    <span className="-mt-1 text-[12px] text-yellow-100">
+                      {errors.phoneNo.message}
+                    </span>
+                  )}
+                </Form.Group>
+                <InputGroup className="input-group">
+                  
+                  <Form.Label htmlFor="message">Message</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    aria-label="With textarea"
+                    name="message"
+                    id="message"
+                    cols="30"
+                    rows="3"
+                    placeholder="Enter your message here"
+                    className=" input-group-text-area"
+                    style={{width:"100%"}}
+                    {...register("message", { required: true })}
+                  />
+                  {errors.message && (
+                    <span className="-mt-1 text-[12px] text-yellow-100">
+                      Please enter your Message.
+                    </span>
+                  )}
+                </InputGroup>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300">
-          Message
-        </label>
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="7"
-          placeholder="Enter your message here"
-          className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-          {...register("message", { required: true })}
-        />
-        {errors.message && (
-          <span className="-mt-1 text-[12px] text-yellow-100">
-            Please enter your Message.
-          </span>
-        )}
-      </div>
+                <Button
+                  variant="success"
+                  className="button-success"
+                  type="submit"
+                  style={{marginTop:"10px"}}
+                >
+                  Submit
+                </Button>
+              </Form>
 
-      <button
-        type="submit"
-        className="mt-6 rounded-[8px] bg-green-300 py-[8px] px-[12px] font-medium"
-        >
-        Send Message
-      </button>
-    </form>
-  )
-}
+              <Link to="/login">Login page</Link>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
 
-export default ContactUsForm
+export default ContactUsForm;

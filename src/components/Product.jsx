@@ -1,6 +1,7 @@
 import { toast } from "react-hot-toast";
 import { add, remove } from "../redux/Slices/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 /*useDispatch is a hook that returns the dispatch function from the Redux store. It is used to dispatch actions to the store. */
 
@@ -36,9 +37,13 @@ const Product = ({ product }) => {
   return (
     <div className="proj-imgbx card-container">
       <div className="heading">
-        <h2 class=" fw-bold fs-3 text-start text-truncate mt-1 w-100">
+      <NavLink to={`/item/${product.id}`} state={{ product }} className="text-black hover-home "> <h2 class=" fw-bold fs-3 text-start text-truncate mt-1 w-100">
           {product.title}
         </h2>
+        </NavLink>
+
+        {/* state prop set to an object with a product property, which contains the entire product object. */}
+       
       </div>
       <span>
         {product.description.split(" ").slice(0, 5).join(" ") + "..."}
@@ -76,7 +81,7 @@ const Product = ({ product }) => {
           width: "100%",
         }}
       >
-        <p style={{ color: "green", fontWeight: "bold" }}>{product.price}$</p>
+        <p style={{ color: "green", fontWeight: "bold", marginTop:"20px" }}>${product.price}</p>
         {cart.some((p) => p.id == product.id) ? (
           <button class="btn transition " onClick={removeFromCart}>
             Remove Item

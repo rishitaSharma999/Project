@@ -3,6 +3,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { BiArrowBack } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import Spinner from "../components/Spinner"
 
 import { resetPassword } from "../services/operations/authapi"
 
@@ -37,7 +38,7 @@ function UpdatePassword() {
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
-        <div className="spinner"></div>
+        <Spinner />
       ) : (
         <div className="max-w-[500px] p-8">
           <h1 className="text-[1.875rem] font-semibold leading-[2.375rem] text-emerald-300 text-center">

@@ -41,8 +41,20 @@ const Cart = () => {
   
 
   const checkOutFunction = async () => {
-    navigate("/checkout");
-  };
+    const token = localStorage.getItem('token');
+  
+    if (token) {
+      navigate("/checkout");
+    }
+    else{
+      toast("Login First to checkout");
+      navigate("/login");
+    }
+    
+    // If token is invalid or user is not logged in, redirect to login page
+    
+    
+  }
 
   {/* he component uses the useEffect hook to update the amount state whenever the cart state changes. The effect is triggered when the cart state or the calculateAmount function changes. */}
 

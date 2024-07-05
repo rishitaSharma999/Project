@@ -36,12 +36,12 @@ export default function MyNavbar() {
             <NavLink to="/" className="text-white hover-home px-2">
               Home
             </NavLink>
-            <NavLink to="/contact" className="text-white hover-home px-2">
-              Contact
-            </NavLink>
-            <NavLink to="/login">login</NavLink>
-            <NavLink to="/signup">Signup</NavLink>
-            <NavLink to="/contact">Contact Us</NavLink>
+            
+            <NavLink to="/login" className="text-white hover-home px-2">login</NavLink>
+            <NavLink to="/signup" className="text-white hover-home px-2">Signup</NavLink>
+            <NavLink to="/contact" className="text-white hover-home px-2">Contact Us</NavLink>
+            
+           
             <NavLink to="/cart" className="text-white px-2">
               <FaShoppingCart className="text-2xl " />
               {cart.length > 0 && (  

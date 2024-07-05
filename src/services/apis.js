@@ -13,3 +13,5 @@ export const endpoints = {
 export const contactusEndpoint = {
   CONTACT_US_API: BASE_URL + "/contact",
 }
+
+//It's a constant that defines the root URL for all API endpoints. In this case, it's http://localhost:4000/api/v1, which means that all API endpoints will start with this URL.

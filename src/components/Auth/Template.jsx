@@ -1,14 +1,16 @@
 import { useSelector } from "react-redux"
 import LoginForm from "./LoginForm"
 import SignupForm from "./SignupForm"
+import Logout from "./Logout"
+import Spinner from "../Spinner";
 
 function Template({ title, description1, description2, formType }) {
   const { loading } = useSelector((state) => state.auth)
-
+  const token = localStorage.getItem('token');
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
-        <div className="spinner"></div>
+        <Spinner />
       ) : (
         <div className="mx-auto flex w-11/12 max-w-maxContent  justify-between gap-y-12 py-12">
           <div className="mx-auto w-11/12 max-w-[450px]">
@@ -21,7 +23,13 @@ function Template({ title, description1, description2, formType }) {
                 {description2}
               </span>
             </p>
-            {formType === "signup" ? <SignupForm /> : <LoginForm />}
+            {token && (
+              formType === "signup"? <SignupForm /> : <Logout />
+            )}
+            {!token && (
+              formType === "signup"? <SignupForm /> : <LoginForm />
+            )}
+           
           </div>
         </div>
       )}

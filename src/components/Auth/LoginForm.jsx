@@ -1,7 +1,9 @@
-import { useState } from "react"
+import React, { useEffect, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
 import { useDispatch } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
+import {Button,Form,Container,Row,Col} from "react-bootstrap/";
+
 
 import { login } from "../../services/operations/authapi"
 
@@ -30,66 +32,57 @@ function LoginForm() {
   }
 
   return (
-    <form
-      onSubmit={handleOnSubmit}
-      className="mt-6 flex w-full flex-col gap-y-4"
-    >
-      <label className="w-full">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem]  text-emerald-300">
-          Email Address <sup className="text-pink-200">*</sup>
-        </p>
-        <input
-          required
+    <>
+    
+
+    <Container>
+        <Row className="justify-content-center align-items-center h-100 mt-5">
+        <Col xl={5}>
+        <div className="login">
+        <h1 style={{fontSize: '36px',fontWeight: 'bold',color: 'rgb(28 46 52);',textShadow: '2px 2px 4px #ccccff'}}>Login</h1>
+        <Form  onSubmit={handleOnSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control required
           type="text"
           name="email"
           value={email}
           onChange={handleOnChange}
-          placeholder="Enter email address"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
-        />
-      </label>
-      <label className="relative">
-        <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-emerald-300">
-          Password <sup className="text-pink-200">*</sup>
-        </p>
-        <input
-          required
+          placeholder="Enter email address" />
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control required
           type={showPassword ? "text" : "password"}
           name="password"
           value={password}
-          onChange={handleOnChange}
-          placeholder="Enter Password"
-          style={{
-            boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
-          }}
-          className="w-full rounded-[0.5rem] bg-blue-700 p-[12px] pr-12 text-emerald-200"
-        />
-        <span
-          onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[38px] z-[10] cursor-pointer"
-        >
-          {showPassword ? (
-            <AiOutlineEyeInvisible fontSize={24}  />
-          ) : (
-            <AiOutlineEye fontSize={24}  />
-          )}
-        </span>
+          onChange={handleOnChange} />
+          </Form.Group>
+          <Button variant="success" className="button-success" type="submit" >Submit</Button>
+        <Link to="/signup">
+          <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
+           Signup
+          </p>
+        </Link>
         <Link to="/forgot-password">
           <p className="mt-1 ml-auto max-w-max text-xs text-blue-100">
             Forgot Password
           </p>
         </Link>
-      </label>
-      <button
-        type="submit"
-        className="mt-6 rounded-[8px] bg-green-300 py-[8px] px-[12px] font-medium "
-      >
-        Sign In
-      </button>
-    </form>
+          
+          
+        </Form>
+        
+      </div>
+        </Col>
+      
+      </Row>
+    </Container>
+    </>
   )
 }
 

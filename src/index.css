@@ -7,6 +7,5 @@
 body {
   font-family: "Poppins", sans-serif;
   min-height: 100vh;
-  
-  background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+  background-color: #f0f0f8;
 }

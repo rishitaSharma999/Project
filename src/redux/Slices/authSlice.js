@@ -25,3 +25,5 @@ const authSlice = createSlice({
 export const { setSignupData, setLoading, setToken } = authSlice.actions;
 
 export default authSlice.reducer;
+
+{/* These action creators are functions that return actions, which are payloads that trigger state changes in the Redux store. By exporting them, you can import and use these action creators in other parts of your application to dispatch actions and update the state. */}

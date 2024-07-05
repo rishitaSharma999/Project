@@ -2,6 +2,8 @@
 const express = require("express")
 const router = express.Router()
 
+//In Express.js, a router is an instance of the express.Router class, which is a mini-application that can be used to handle HTTP requests.
+
 // Import the required controllers and middleware functions
 const {
   login,
@@ -13,7 +15,7 @@ const {
   resetPassword,
 } = require("../controllers/ResetPassword")
 
-const { auth } = require("../middlewares/auth")
+//const { auth } = require("../middlewares/auth")
 
 // Routes for Login, Signup, and Authentication
 

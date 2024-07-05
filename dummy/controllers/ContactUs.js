@@ -12,10 +12,10 @@ exports.contactUsController = async (req, res) => {
       message = ${message}
 
       your mail has been registered , all the queries would be solved soon 
-      thank you for choosing S.S tutorials`
+      thank you for choosing Rishita's Shopping Store`
     )
     const mailSendToOwner = await mailSender(
-      "rishita2004sharma@gmail.com","issue in Sharma stores",
+      "rishita2004sharma@gmail.com","issue in Shoppin stores",
       `user is facing a issue in your app , the user details and the issue faced are as follows:
       ${firstname} ${lastname}
       ${countrycode}  - ${phoneNo}

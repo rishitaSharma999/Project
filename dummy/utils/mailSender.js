@@ -13,7 +13,7 @@ const mailSender = async (email,title,body)=>{
         })
 
         let info = await transporter.sendMail({
-            from:"Sharma stores",
+            from:"Shopping store",
             to:`${email}`,
             subject:`${title}`,
 
@@ -31,3 +31,5 @@ const mailSender = async (email,title,body)=>{
 }
 
 module.exports = mailSender;
+//This is a Node.js function called mailSender that sends an email using the Nodemailer library.
+//dotenv is a library that loads environment variables from a .env file. In this case, it's used to load email credentials from the environment variables.

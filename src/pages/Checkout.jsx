@@ -19,9 +19,23 @@ import { useNavigate } from "react-router-dom";
 const Checkout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  
   
   const { cart } = useSelector((state) => state);
   const [amount, setAmount] = useState(0);
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  
 
   const calculateAmount = useCallback(() => {
     if (cart.length === 0) return 0;
@@ -36,6 +50,10 @@ const Checkout = () => {
   }, [cart, calculateAmount]);
 
   const placeOrder=()=>{
+    if (!name || !address ) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
     console.log("button pressed");
     dispatch(clearCart()); // clear the cart
     console.log("cart cleared")
@@ -57,8 +75,8 @@ const Checkout = () => {
                       className="mb-3 form-group"
                       controlId="exampleForm.ControlInput1"
                     >
-                      <Form.Label>Enter Name</Form.Label>
-                      <Form.Control type="name" placeholder="Jane Doe" />
+                      <Form.Label >Enter Name</Form.Label>
+                      <Form.Control type="name" placeholder="Jane Doe" required value={name} onChange={handleNameChange}  />
                     </Form.Group>
                     <Form.Group
                       className="mb-3"
@@ -69,7 +87,8 @@ const Checkout = () => {
                         type="address"
                         as="textarea"
                         rows={3}
-                        placeholder="House-no,Street-no,Area,City,State,Pincode"
+                        placeholder="House-no,Street-no,Area,City,State,Pincode" required value={address}
+                        onChange={handleAddressChange}
                       />
                     </Form.Group>
                   </Form>
@@ -86,6 +105,7 @@ const Checkout = () => {
                           name="group1"
                           type={type}
                           id={`default-${type}`}
+                          
                         ></Form.Check>
                         <Form.Check
                           label="Credit-Debit Cards"
