@@ -49,9 +49,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/verify-email" element={<PrivateRoute component={VerifyEmail} />} />
-        <Route path="forgot-password" element={<PrivateRoute component={ForgotPassword} />} />
-        <Route path="update-password/:id" element={<PrivateRoute component={UpdatePassword} />} />
+          <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="forgot-password" element={ForgotPassword} />
+        <Route path="update-password/:id" element={UpdatePassword} />
           <Route path="/logout" element={<Logout />}/>  
           <Route path="/item/:id" element={<Item />}/>
           <Route path="/payment" element={<PrivateRoute component={PaymentForm} />} />
