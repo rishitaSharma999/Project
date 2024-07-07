@@ -6,7 +6,7 @@ const app = express();
 
 const userRoutes = require("../dummy/routes/User");
 const contactRoutes = require("../dummy/routes/Contact");
-
+const paymentRoutes=require("../dummy/routes/Payment")
 
 const database = require("../dummy/config/database");
 const cookieParser = require("cookie-parser");
@@ -21,6 +21,9 @@ database.dbConnect();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(express.urlencoded({
+    extended: true
+}));
 app.use(
     cors({
         origin:"http://localhost:5175",
@@ -34,6 +37,8 @@ app.use(
 
 app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1",contactRoutes);
+app.use("/api/v1",paymentRoutes);
+
 
 
 app.get("/",(req,res)=>{

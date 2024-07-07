@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState, useCallback } from "react";
 import CartItem from "../components/CartItem";
 import Container from "react-bootstrap/Container";
@@ -9,6 +9,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
+import {add,remove,clearCart} from "../redux/Slices/cartSlice"
 
 
 
@@ -21,8 +22,12 @@ import toast from "react-hot-toast";
 const Cart = () => {
   const navigate = useNavigate();
   const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [amount, setAmount] = useState(0);
   const [email, setEmail] = useState('');
+
+  
+  
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -60,14 +65,14 @@ const Cart = () => {
 
   return (
     <>
-      {cart.length > 0 ? (
+      {  cart.length > 0 ? (
         <Container>
           <Row>
             <Col xs={12} md={10} lg={8}>
-              <div className="cart-items">
+              <div className="cart-items" key="cart-items">
                 {cart.map((cartItem, index) => (
                   <div className="cart-item" key={cartItem.id}>
-                    <CartItem item={cartItem} itemIndex={index} />
+                    <CartItem item={cartItem}  />
                   </div>
                 ))}
               </div>
@@ -90,7 +95,7 @@ const Cart = () => {
           </Row>
         </Container>
       ) : (
-        <div className="cart-container">
+        <div className="cart-container" key="empty-cart">
           <Card style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title> Your cart is empty!</Card.Title>

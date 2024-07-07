@@ -128,13 +128,20 @@ exports.login = async (req, res) => {
 
     // Generate JWT token and Compare Password
     if (await bcrypt.compare(password, user.password)) {
+      const tokenPayload = {
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+      }
       const token = jwt.sign(
-        { email: user.email, id: user._id, accountType: user.accountType },
+        tokenPayload,
         process.env.JWT_SECRET,
         {
           expiresIn: "24h",
         }
       )
+
 
       // Save token to user document in database
       user.token = token

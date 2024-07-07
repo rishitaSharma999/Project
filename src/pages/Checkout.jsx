@@ -55,10 +55,10 @@ const Checkout = () => {
       return;
     }
     console.log("button pressed");
-    dispatch(clearCart()); // clear the cart
-    console.log("cart cleared")
-    toast.success("Order placed successfully");
-    navigate('/', { replace: true });
+    //dispatch(clearCart()); // clear the cart
+    //console.log("cart cleared")
+    //toast.success("Order placed successfully");
+    navigate('/payment', { replace: true });
   }
 
   return (
@@ -94,7 +94,8 @@ const Checkout = () => {
                   </Form>
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="1" className="accordion-item">
+              {/*
+               <Accordion.Item eventKey="1" className="accordion-item">
                 <Accordion.Header>Payment Method</Accordion.Header>
                 <Accordion.Body>
                   <Form className="form-group">
@@ -130,6 +131,8 @@ const Checkout = () => {
                   </Form>
                 </Accordion.Body>
               </Accordion.Item>
+              */}
+             
               <Accordion.Item eventKey="2">
                 <Accordion.Header>Items and Delivery</Accordion.Header>
                 <Accordion.Body>

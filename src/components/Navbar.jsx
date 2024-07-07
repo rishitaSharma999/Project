@@ -40,7 +40,8 @@ export default function MyNavbar() {
             <NavLink to="/login" className="text-white hover-home px-2">login</NavLink>
             <NavLink to="/signup" className="text-white hover-home px-2">Signup</NavLink>
             <NavLink to="/contact" className="text-white hover-home px-2">Contact Us</NavLink>
-            
+           
+           
            
             <NavLink to="/cart" className="text-white px-2">
               <FaShoppingCart className="text-2xl " />
