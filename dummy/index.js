@@ -26,7 +26,7 @@ app.use(express.urlencoded({
 }));
 app.use(
     cors({
-        origin:"http://localhost:5175",
+        origin:["http://localhost:5175","https://shopping-cart-final2.vercel.app"],
         credentials:true
     })
 )
