@@ -3,16 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  FormLabel,
-  FormControl,
-  Button,
-} from "react-bootstrap";
+import {Container, Row, Col, Form, Button} from "react-bootstrap";
 
 import { getPasswordResetToken } from "../services/operations/authapi";
 
@@ -24,15 +15,26 @@ function ForgotPassword() {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(getPasswordResetToken(email, setEmailSent));
+    dispatch(getPasswordResetToken(email));
+    setEmailSent(true);
+  };
+  const handleResendEmail = () => {
+    dispatch(getPasswordResetToken(email));
   };
 
   return (
     <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
       {loading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-        <Spinner />
-      </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Spinner />
+        </div>
       ) : (
         <div>
           <Container>
@@ -46,32 +48,45 @@ function ForgotPassword() {
                     textShadow: "2px 2px 4px #ccccff",
                   }}
                 >
-                  
                   {!emailSent ? "Reset your password" : "Check email"}
                 </h1>
-                <Form onSubmit={handleOnSubmit}>
-                  {!emailSent && ( <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control
-                      required
-                      type="text"
-                      name="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter email address"
-                    />
-                  </Form.Group>
+                {!emailSent ? (
+                  <Form onSubmit={handleOnSubmit}>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Email address</Form.Label>
+                      <Form.Control
+                        required
+                        type="email"
+                        name="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter email address"
+                      />
+                    </Form.Group>
+                    <Button
+                      variant="success"
+                      className="button-success"
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  </Form>
+                ) : (
+                  <div>
+                    <p>
+                      Email sent! Check your inbox for password reset
+                      instructions.
+                    </p>
+                    <Button
+                      variant="success"
+                      className="button-success"
+                      type="button"
+                      onClick={handleResendEmail}
+                    >
+                      Resend Email
+                    </Button>
+                  </div>
                 )}
-                 
-
-                  <Button
-                    variant="success"
-                    className="button-success"
-                    type="submit"
-                  >
-                    {!emailSent ? "Submit" : "Resend Email"}
-                  </Button>
-                </Form>
                 <Link to="/login">
                   <p className="flex items-center gap-x-2 text-blue-100">
                     <BiArrowBack /> Back To Login

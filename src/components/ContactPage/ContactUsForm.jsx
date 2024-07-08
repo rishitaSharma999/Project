@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { Button, Form, Container, Row, Col } from "react-bootstrap/";
 import InputGroup from "react-bootstrap/InputGroup";
+import toast from "react-hot-toast";
 
 import CountryCode from "../../data/countrycode.json";
 import { apiConnector } from "../../services/apiconnector";
@@ -28,9 +29,11 @@ const ContactUsForm = () => {
       );
       console.log("Email Res - ", res);
       setLoading(false);
+      toast.success('Contact form submitted successfully!');
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message);
       setLoading(false);
+      toast.error("Submission failed");
     }
   };
 
