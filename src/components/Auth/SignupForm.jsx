@@ -84,6 +84,11 @@ function SignupForm() {
                    required
                    type="text"
                    name="firstName"
+                   style={{
+                    color: 'rgb(51, 51, 51)',
+                    backgroundColor: 'rgb(223, 219, 249)',
+                    border: '2px solid rgb(120, 30, 238)'
+                  }}
                    value={firstName}
                    onChange={handleOnChange}
                    placeholder="Enter first name"
@@ -95,6 +100,11 @@ function SignupForm() {
                   required
                   type="text"
                   name="lastName"
+                  style={{
+                    color: 'rgb(51, 51, 51)',
+                    backgroundColor: 'rgb(223, 219, 249)',
+                    border: '2px solid rgb(120, 30, 238)'
+                  }}
                   value={lastName}
                   onChange={handleOnChange}
                   placeholder="Enter last name"
@@ -106,6 +116,11 @@ function SignupForm() {
                     required
                     type="text"
                     name="email"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     value={email}
                     onChange={handleOnChange}
                     placeholder="Enter email address"
@@ -121,6 +136,11 @@ function SignupForm() {
                     required
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     value={password}
                     onChange={handleOnChange}
                     placeholder="Enter Password"
@@ -133,6 +153,11 @@ function SignupForm() {
                     required
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     value={confirmPassword}
                     onChange={handleOnChange}
                     placeholder="Confirm Password"

@@ -47,6 +47,11 @@ function LoginForm() {
           type="text"
           name="email"
           value={email}
+          style={{
+            color: 'rgb(51, 51, 51)',
+            backgroundColor: 'rgb(223, 219, 249)',
+            border: '2px solid rgb(120, 30, 238)'
+          }}
           onChange={handleOnChange}
           placeholder="Enter email address" />
             <Form.Text className="text-muted">
@@ -60,6 +65,11 @@ function LoginForm() {
           type={showPassword ? "text" : "password"}
           name="password"
           value={password}
+          style={{
+            color: 'rgb(51, 51, 51)',
+            backgroundColor: 'rgb(223, 219, 249)',
+            border: '2px solid rgb(120, 30, 238)'
+          }}
           onChange={handleOnChange} />
           </Form.Group>
           <Button variant="success" className="button-success" type="submit" >Submit</Button>

@@ -73,6 +73,11 @@ const ContactUsForm = () => {
                     name="firstname"
                     id="firstname"
                     placeholder="Enter first name"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
                     {...register("firstname", { required: true })}
                   />
@@ -89,6 +94,11 @@ const ContactUsForm = () => {
                     name="lastname"
                     id="lastname"
                     placeholder="Enter last name"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
                     {...register("lastname")}
                   />
@@ -100,6 +110,11 @@ const ContactUsForm = () => {
                     name="email"
                     id="email"
                     placeholder="Enter email address"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
                     {...register("email", { required: true })}
                   />
@@ -119,6 +134,11 @@ const ContactUsForm = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
@@ -131,6 +151,11 @@ const ContactUsForm = () => {
                     as="select"
                     {...register("countrycode", { required: true })}
                     className="form-select w-full rounded-[0.5rem] bg-blue-700 p-[12px] text-emerald-200"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                   >
                     {CountryCode.map((ele, i) => {
                       return (
@@ -149,6 +174,11 @@ const ContactUsForm = () => {
                     name="phonenumber"
                     id="phonenumber"
                     placeholder="12345 67890"
+                    style={{
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     className="w-full rounded-[0.5rem] bg-blue-700 p-[12px]  text-emerald-200"
                     {...register("phoneNo", {
                       required: {
@@ -177,7 +207,12 @@ const ContactUsForm = () => {
                     rows="3"
                     placeholder="Enter your message here"
                     className=" input-group-text-area"
-                    style={{width:"100%"}}
+                   
+                    style={{width:"100%",
+                      color: 'rgb(51, 51, 51)',
+                      backgroundColor: 'rgb(223, 219, 249)',
+                      border: '2px solid rgb(120, 30, 238)'
+                    }}
                     {...register("message", { required: true })}
                   />
                   {errors.message && (
